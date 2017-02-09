@@ -40,9 +40,7 @@ this.inhabitModule.configuration.taxonomyFilter = {
               "id": "mymodule",
               "deliveryMethod": "random",
               "taxonomyFilter":{
-                "method":"exclude",/*this could be either "exclude" "excludeAndInclude" or "include"
-                "taxonomies":"default", /*this is the list of taxonomies*/
-                "threshold":0.3,
+                "method":"excludeAndInclude",
                 "excludeTaxonomies":"default",
                 "excludeThreshold":0.3,
                 "includeTaxonomies":"default",
