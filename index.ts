@@ -24,6 +24,7 @@ export class TaxonomyFilter {
         this.textClassification = this.inhabitModule.textClassificationService;
 
         this.settings = inhabitModule.configuration.taxonomyFilter || defaultSettings;
+
         switch (this.settings.method) {
             case "exclude":
                 this.excludeFilter = true;
@@ -59,21 +60,24 @@ export class TaxonomyFilter {
         for (let i = 0; i < items.length; i++) {
             let item = items[i];
             if(this.excludeFilter) {
-                if (item.score < this.settings.threshold) continue;
-                let intersection = _intersection(item.values, excludeTaxonomyFilter);
-                if (intersection.length > 0) {
-                    this.deferred.reject();
-                    return;
+                if (item.score > excludeThreshold) {
+                    let intersection = _intersection(item.values, excludeTaxonomyFilter);
+                    if (intersection.length > 0) {
+                        this.deferred.reject();
+                        return;
+                    }
                 }
             }
             if(this.includeFilter && !relevantIncludeTaxonomyFound) {
-                if (item.score > this.settings.threshold) continue;
-                let intersection = _intersection(item.values, excludeTaxonomyFilter);
-                if (intersection.length > 0) {
-                    relevantIncludeTaxonomyFound = true;
+                if (item.score > includeThreshold) {
+                    let intersection = _intersection(item.values, includeTaxonomyFilter);
+                    if (intersection.length > 0) {
+                        relevantIncludeTaxonomyFound = true;
+                    }
                 }
             }
         }
+
         if(this.includeFilter && !relevantIncludeTaxonomyFound){
             this.deferred.reject();
         }

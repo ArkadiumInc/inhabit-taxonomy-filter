@@ -27,9 +27,12 @@ Settings provided through the module configuration and can be exposed on upper l
 **From code**
 ````javascript
 this.inhabitModule.configuration.taxonomyFilter = {
-        method:"exclude",
+        method:"excludeAndInclude",
         taxonomies:"default",
-        threshold:0.3
+        excludeTaxonomies:"default",
+        excludeThreshold:0.3,
+        includeTaxonomies:"default",
+        includeThreshold:0.7
 }
 ````
 **From inhabit configuration**
@@ -44,7 +47,7 @@ this.inhabitModule.configuration.taxonomyFilter = {
                 "excludeTaxonomies":"default",
                 "excludeThreshold":0.3,
                 "includeTaxonomies":"default",
-                "includeThreshold":0.3
+                "includeThreshold":0.7
               }
             }
           ]
@@ -54,9 +57,11 @@ this.inhabitModule.configuration.taxonomyFilter = {
 ###Settings Description
 ````json
 {
-  "method":"exclude",
-  "taxonomies":"default",
-  "threshold":0.3
+  "method":"excludeAndInclude",
+  "excludeTaxonomies":"default",
+  "excludeThreshold":0.3,
+  "includeTaxonomies":"default",
+  "includeThreshold":0.7
 }
 ````
 
