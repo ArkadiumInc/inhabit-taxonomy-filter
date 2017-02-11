@@ -54,6 +54,88 @@ this.inhabitModule.configuration.taxonomyFilter = {
 }
 ````
 
+Add the forms to allow the client to edit on the adminsite:
+#### Form data
+[
+  {
+    "key": "taxonomyFilter",
+    "items": [
+      {
+        "key":"taxonomyFilter.method",
+        "type": "select",
+        "titleMap": {
+          "exclude": "Exclude",
+          "include": "Include",
+          "excludeAndInclude": "ExcludeAndInclude"
+        }
+      },
+      {
+        "key":"taxonomyFilter.excludeTaxonomies",
+        "items": [
+            "taxonomyFilter.excludeTaxonomies[]"
+            ]
+      },
+      "taxonomyFilter.excludeThreshold",
+      {
+        "key":"taxonomyFilter.includeTaxonomies",
+        "items": [
+            "taxonomyFilter.includeTaxonomies[]"
+            ]
+      },
+      "taxonomyFilter.includeThreshold"
+    ]
+  }
+]
+
+### schema
+{
+  "type": "object",
+  "title": "Taxonomy",
+  "properties": {
+    "taxonomyFilter": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "title": "Taxonomy Method",
+          "type": "select",
+		  "enum": [
+			"exclude",
+			"include",
+			"excludeAndInclude"
+		  ]
+        },
+        "excludeTaxonomies": {
+          "title": "array of excluded taxonomies",
+          "type": "array",
+		  "items": {
+			"type": "string",
+			"default": "politics"
+		  }
+        },
+        "excludeThreshold": {
+          "title": "excludeThreshold",
+          "type": "number",
+		  "default": 3
+        },
+        "includeTaxonomies": {
+          "title": "array of included Taxonomies",
+          "type": "array",
+		  "items": {
+			"type": "string",
+			"default": "sports"
+		  }
+        },
+        "includeThreshold": {
+          "title": "includeThreshold",
+          "type": "number",
+		  "default": 3
+        }
+      }
+    }
+  }
+}
+
+
 ###Settings Description
 ````json
 {
