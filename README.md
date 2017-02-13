@@ -56,6 +56,7 @@ this.inhabitModule.configuration.taxonomyFilter = {
 
 Add the forms to allow the client to edit on the adminsite:
 #### Form data
+````json
 [
   {
     "key": "taxonomyFilter",
@@ -86,8 +87,9 @@ Add the forms to allow the client to edit on the adminsite:
     ]
   }
 ]
-
+````
 ### schema
+````json
 {
   "type": "object",
   "title": "Taxonomy",
@@ -134,7 +136,7 @@ Add the forms to allow the client to edit on the adminsite:
     }
   }
 }
-
+````
 
 ###Settings Description
 ````json
