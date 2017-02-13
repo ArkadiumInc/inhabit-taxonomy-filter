@@ -5,10 +5,12 @@ export = {
     /**
      * exclude|include
      */
-    method:"exclude",
+    method:"excludeAndInclude",
     /**
      * string|array
      */
-    taxonomies:"default",
-    threshold:0.3
+    excludeTaxonomies:"default",
+    excludeThreshold:0.3,
+    includeTaxonomies:"default",
+    includeThreshold:0.3
 };

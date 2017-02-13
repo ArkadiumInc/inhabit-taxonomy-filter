@@ -27,9 +27,12 @@ Settings provided through the module configuration and can be exposed on upper l
 **From code**
 ````javascript
 this.inhabitModule.configuration.taxonomyFilter = {
-        method:"exclude",
+        method:"excludeAndInclude",
         taxonomies:"default",
-        threshold:0.3
+        excludeTaxonomies:"default",
+        excludeThreshold:0.3,
+        includeTaxonomies:"default",
+        includeThreshold:0.7
 }
 ````
 **From inhabit configuration**
@@ -40,21 +43,107 @@ this.inhabitModule.configuration.taxonomyFilter = {
               "id": "mymodule",
               "deliveryMethod": "random",
               "taxonomyFilter":{
-                "method":"exclude",
-                "taxonomies":"default",
-                "threshold":0.3
+                "method":"excludeAndInclude",
+                "excludeTaxonomies":"default",
+                "excludeThreshold":0.3,
+                "includeTaxonomies":"default",
+                "includeThreshold":0.7
               }
             }
           ]
 }
 ````
 
+Add the forms to allow the client to edit on the adminsite:
+#### Form data
+[
+  {
+    "key": "taxonomyFilter",
+    "items": [
+      {
+        "key":"taxonomyFilter.method",
+        "type": "select",
+        "titleMap": {
+          "exclude": "Exclude",
+          "include": "Include",
+          "excludeAndInclude": "ExcludeAndInclude"
+        }
+      },
+      {
+        "key":"taxonomyFilter.excludeTaxonomies",
+        "items": [
+            "taxonomyFilter.excludeTaxonomies[]"
+            ]
+      },
+      "taxonomyFilter.excludeThreshold",
+      {
+        "key":"taxonomyFilter.includeTaxonomies",
+        "items": [
+            "taxonomyFilter.includeTaxonomies[]"
+            ]
+      },
+      "taxonomyFilter.includeThreshold"
+    ]
+  }
+]
+
+### schema
+{
+  "type": "object",
+  "title": "Taxonomy",
+  "properties": {
+    "taxonomyFilter": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "title": "Taxonomy Method",
+          "type": "select",
+		  "enum": [
+			"exclude",
+			"include",
+			"excludeAndInclude"
+		  ]
+        },
+        "excludeTaxonomies": {
+          "title": "array of excluded taxonomies",
+          "type": "array",
+		  "items": {
+			"type": "string",
+			"default": "politics"
+		  }
+        },
+        "excludeThreshold": {
+          "title": "excludeThreshold",
+          "type": "number",
+		  "default": 3
+        },
+        "includeTaxonomies": {
+          "title": "array of included Taxonomies",
+          "type": "array",
+		  "items": {
+			"type": "string",
+			"default": "sports"
+		  }
+        },
+        "includeThreshold": {
+          "title": "includeThreshold",
+          "type": "number",
+		  "default": 3
+        }
+      }
+    }
+  }
+}
+
+
 ###Settings Description
 ````json
 {
-  "method":"exclude",
-  "taxonomies":"default",
-  "threshold":0.3
+  "method":"excludeAndInclude",
+  "excludeTaxonomies":"default",
+  "excludeThreshold":0.3,
+  "includeTaxonomies":"default",
+  "includeThreshold":0.7
 }
 ````
 
