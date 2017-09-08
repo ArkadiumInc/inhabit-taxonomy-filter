@@ -1,8 +1,8 @@
-#TaxonomyFilter
+# TaxonomyFilter
 
 Special filter for inhabit factives. Allows make factives brand safe and attached to specific categories
 
-##Install
+## Install
 
 ````
 npm install inhabit-taxonomy-filter --save
@@ -20,7 +20,7 @@ this.taxonomyFilter.apply().then(function () {
 });
 
 ````
-##Settings
+## Settings
 
 Settings provided through the module configuration and can be exposed on upper level. if you want to override default settings you should add "taxonomyFilter" section into your module configuration, either on the inhabit configuration level or through the code :
 
@@ -138,7 +138,7 @@ Add the forms to allow the client to edit on the adminsite:
 }
 ````
 
-###Settings Description
+### Settings Description
 ````json
 {
   "method":"excludeAndInclude",
