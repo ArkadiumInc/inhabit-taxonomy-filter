@@ -26,8 +26,11 @@ export class TaxonomyFilter {
         const include = tax.findWords(this.settings.getIncludeList())
             .filter(threshold(this.settings.getIncludeThreshold()));;
 
-        if (exclude.length > 0) throw Error('Taxonomy filter found Exclude match.');
-        if (include.length < 1) throw Error('Taxonomy filter not found Include match.');
+        if (this.settings.isExclude() && exclude.length > 0)
+            throw Error('Taxonomy filter found Exclude match.');
+
+        if (this.settings.isInclude() && include.length < 1)
+            throw Error('Taxonomy filter not found Include match.');
 
         return true;
     }

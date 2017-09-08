@@ -1,9 +1,10 @@
-export const METHOD_EXCLUDE =           "exclude";
-export const METHOD_INCLUDE = "excludeAndInclude";
+export const METHOD_EXCLUDE = 'exclude';
+export const METHOD_INCLUDE = 'include';
+export const METHOD_EXCLUDE_INCLUDE = 'excludeAndInclude';
 
 export const TAXONOMY_DEFAULT = "default";
 
-export type FilterMethod = typeof METHOD_EXCLUDE | typeof METHOD_INCLUDE;
+export type FilterMethod = typeof METHOD_EXCLUDE | typeof METHOD_INCLUDE | typeof METHOD_EXCLUDE_INCLUDE;
 
 export type TaxonomyList = typeof TAXONOMY_DEFAULT | string[];
 
@@ -32,18 +33,26 @@ export class NormalSettings {
     }
 
     public getExcludeList() {
-        return this.method === METHOD_EXCLUDE ? this.excludeTaxonomies : [];
+        return this.isExclude() ? this.excludeTaxonomies : [];
     }
 
     public getIncludeList() {
-        return this.method === METHOD_INCLUDE ? this.includeTaxonomies : [];
+        return this.isInclude() ? this.includeTaxonomies : [];
     }
 
     public getExcludeThreshold() {
-        return this.method === METHOD_EXCLUDE ? this.excludeThreshold : 1;
+        return this.isExclude() ? this.excludeThreshold : 1;
     }
 
     public getIncludeThreshold() {
-        return this.method === METHOD_INCLUDE ? this.includeThreshold : 1;
+        return this.isInclude() ? this.includeThreshold : 1;
+    }
+
+    public isExclude() {
+        return ~[ METHOD_EXCLUDE, METHOD_EXCLUDE_INCLUDE ].indexOf(this.method);
+    }
+    
+    public isInclude() {
+        return ~[ METHOD_INCLUDE, METHOD_EXCLUDE_INCLUDE ].indexOf(this.method);
     }
 }
