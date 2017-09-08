@@ -5,10 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "prepublish": "npm run test && npm run size",
-    "test": "npm run build && mocha ./dist/*.spec.js ./dist/**/*.spec.js",
+    "prepublish": "npm run test && npm run build && npm run size",
+    "test": "mocha -r ts-node/register src/*.spec.ts src/**/*.spec.ts",
     "size": "size-limit",
-    "test-watch": "concurrently \"tsc --watch\" \"ava dist/**/*.spec.js --watch\""
+    "test-watch": "npm run test -- --watch"
   },
   "git": "https://github.com/ArkadiumInc/inhabit-taxonomy-filter",
   "author": "wishmasterts",
@@ -21,6 +21,7 @@
     "mocha": "^3.5.0",
     "rimraf": "^2.6.1",
     "size-limit": "^0.11.0",
+    "ts-node": "^3.3.0",
     "typescript": "^2.5.2"
   },
   "dependencies": {

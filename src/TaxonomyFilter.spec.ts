@@ -1,5 +1,5 @@
 import { TaxonomyFilter } from './TaxonomyFilter';
-import { Settings } from './util/Settings';
+import { Settings, METHOD_INCLUDE } from './util/Settings';
 
 import { expect } from 'chai';
 
@@ -15,14 +15,23 @@ class ModuleMock {
 }
 
 const crappyConfig = {
-    method: "exclude",
+    method: METHOD_INCLUDE,
     excludeTaxonomies: [ "basketball" ],
     excludeThreshold: 0.3,
     includeTaxonomies: "default",
     includeThreshold: 0.3
 };
 
+const thresholdConfig = {
+    method: METHOD_INCLUDE,
+    excludeTaxonomies: [ "history" ],
+    excludeThreshold: 0.3,
+    includeTaxonomies: "default",
+    includeThreshold: 0.3
+}
+
 describe('TaxonomyFilter', () => {
+
     it('should pass on normal settings', async () => {
         const tf = new TaxonomyFilter(new ModuleMock());
         expect(typeof tf).to.equal('object');
@@ -31,6 +40,7 @@ describe('TaxonomyFilter', () => {
     
         expect(result).to.equal(true);
     });
+
     it('should fail on crappy settings', async () => {
         const tf = new TaxonomyFilter(new ModuleMock(crappyConfig as Settings));
         expect(typeof tf).to.equal('object');
@@ -40,6 +50,15 @@ describe('TaxonomyFilter', () => {
         } catch(e) {
             expect(e.message).to.equal('Taxonomy filter found Exclude match.');
         }
+    });
+    
+    it('should process threshold setting', async () => {
+        const tf = new TaxonomyFilter(new ModuleMock(thresholdConfig as Settings));
+        expect(typeof tf).to.equal('object');
+    
+        const result = await tf.apply();
+    
+        expect(result).to.equal(true);
     })
 });
 
