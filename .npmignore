@@ -1,2 +1,7 @@
 node_modules
 .idea
+src
+
+# Exclude test files
+dist/**/*.spec.*
+dist/*.spec.*
