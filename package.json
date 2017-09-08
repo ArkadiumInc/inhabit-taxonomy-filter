@@ -1,6 +1,6 @@
 {
   "name": "inhabit-taxonomy-filter",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "taxonomy filter for inhabit",
   "main": "dist/index.js",
   "scripts": {
