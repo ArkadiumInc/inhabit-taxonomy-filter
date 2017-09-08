@@ -9,15 +9,17 @@ npm install inhabit-taxonomy-filter --save
 ````
 
 ````javascript
-var TaxonomyFilter = require("inhabit-taxonomy-filter").TaxonomyFilter;
-this.taxonomyFilter = new TaxonomyFilter(this);
-//...............
-this.taxonomyFilter.apply().then(function () {
-   //Everything is ok you can continue 
-})
-.catch(function(){
-    //Filter encountered categories that not allowed, you should stop your logic sequence
-});
+import { TaxonomyFilter } from 'inhabit-taxonomy-filter';
+
+class InhabitModule() {
+  ...
+  public async getContent() {
+    const taxfilter = new TaxonomyFilter(this);
+    if (await taxfilter.apply()) {
+      return <success filter result>
+    }
+  }
+}
 
 ````
 ## Settings
