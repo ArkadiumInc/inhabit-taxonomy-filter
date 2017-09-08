@@ -27,6 +27,8 @@ export class TaxonomyFilter {
             .filter(threshold(this.settings.getIncludeThreshold()));;
 
         if (exclude.length > 0) throw Error('Taxonomy filter found Exclude match.');
-        if (include.length > 0) return true;
+        if (include.length < 1) throw Error('Taxonomy filter not found Include match.');
+
+        return true;
     }
 }

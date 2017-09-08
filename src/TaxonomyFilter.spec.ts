@@ -1,5 +1,5 @@
 import { TaxonomyFilter } from './TaxonomyFilter';
-import { Settings, METHOD_INCLUDE } from './util/Settings';
+import { Settings, METHOD_INCLUDE, METHOD_EXCLUDE } from './util/Settings';
 
 import { expect } from 'chai';
 
@@ -15,8 +15,8 @@ class ModuleMock {
 }
 
 const crappyConfig = {
-    method: METHOD_INCLUDE,
-    excludeTaxonomies: [ "basketball" ],
+    method: METHOD_EXCLUDE,
+    excludeTaxonomies: [ "sports" ],
     excludeThreshold: 0.3,
     includeTaxonomies: "default",
     includeThreshold: 0.3
@@ -27,6 +27,14 @@ const thresholdConfig = {
     excludeTaxonomies: [ "history" ],
     excludeThreshold: 0.3,
     includeTaxonomies: "default",
+    includeThreshold: 0.3
+}
+
+const thresholdConfig2 = {
+    method: METHOD_INCLUDE,
+    excludeTaxonomies: [ "history" ],
+    excludeThreshold: 0.3,
+    includeTaxonomies: [ "history" ],
     includeThreshold: 0.3
 }
 
@@ -47,11 +55,12 @@ describe('TaxonomyFilter', () => {
     
         try {
             const result = await tf.apply();
+            expect(true).not.to.equal(true);
         } catch(e) {
             expect(e.message).to.equal('Taxonomy filter found Exclude match.');
         }
     });
-    
+
     it('should process threshold setting', async () => {
         const tf = new TaxonomyFilter(new ModuleMock(thresholdConfig as Settings));
         expect(typeof tf).to.equal('object');
@@ -59,8 +68,17 @@ describe('TaxonomyFilter', () => {
         const result = await tf.apply();
     
         expect(result).to.equal(true);
-    })
-});
+    });
 
-// test('Exclude flow', async t => {
-// })
+    it('should nicely process threshold setting', async () => {
+        const tf = new TaxonomyFilter(new ModuleMock(thresholdConfig2 as Settings));
+        expect(typeof tf).to.equal('object');
+    
+        try {
+            const result = await tf.apply();
+            expect(true).not.to.equal(true);
+        } catch(e) {
+            expect(e.message).to.equal('Taxonomy filter not found Include match.');
+        }
+    });
+});
