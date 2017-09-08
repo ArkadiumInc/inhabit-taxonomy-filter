@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.3"></a>
+## [1.2.3](https://github.com/ArkadiumInc/inhabit-taxonomy-filter/compare/v1.2.2...v1.2.3) (2017-09-08)
+
+
+### Bug Fixes
+
+* **TaxonomyFilter:** Fix logic ([28cc95a](https://github.com/ArkadiumInc/inhabit-taxonomy-filter/commit/28cc95a))
+
+
+
 <a name="1.2.2"></a>
 ## [1.2.2](https://github.com/ArkadiumInc/inhabit-taxonomy-filter/compare/v1.2.1...v1.2.2) (2017-09-08)
 
