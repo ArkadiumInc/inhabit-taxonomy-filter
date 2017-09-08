@@ -1,0 +1,1 @@
+export { TaxonomyFilter } from './TaxonomyFilter';

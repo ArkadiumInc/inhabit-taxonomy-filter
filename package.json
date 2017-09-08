@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
+    "prepublish": "npm run test",
     "test": "tsc && mocha ./dist/*.spec.js ./dist/**/*.spec.js",
     "test-watch": "concurrently \"tsc --watch\" \"ava dist/**/*.spec.js --watch\""
   },
@@ -16,7 +17,6 @@
     "@types/mocha": "^2.2.42",
     "concurrently": "^3.5.0",
     "cz-conventional-changelog": "^2.0.0",
-    "inhabit-module-base": "^1.6.0",
     "mocha": "^3.5.0",
     "typescript": "^2.5.2"
   },

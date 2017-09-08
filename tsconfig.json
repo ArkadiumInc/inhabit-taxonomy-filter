@@ -2,9 +2,14 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
-    "outDir": "./build/",
+    "lib": [ "es5", "es2015.promise", "es2015.collection", "dom"],
+    "outDir": "./dist/",
+    "declaration": true,
     "sourceMap": true
   },
+  "include": [
+    "src"
+  ],
   "exclude": [
     "node_modules"
   ]
