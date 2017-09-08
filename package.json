@@ -4,13 +4,13 @@
   "description": "taxonomy filter for inhabit",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "rimraf dist && tsc",
     "prepublish": "npm run test && npm run size",
-    "test": "tsc && mocha ./dist/*.spec.js ./dist/**/*.spec.js",
+    "test": "npm run build && mocha ./dist/*.spec.js ./dist/**/*.spec.js",
     "size": "size-limit",
     "test-watch": "concurrently \"tsc --watch\" \"ava dist/**/*.spec.js --watch\""
   },
-  "git": "https://github.com/ArkadiumInc/inhabit-taxonomy-filter.git",
+  "git": "https://github.com/ArkadiumInc/inhabit-taxonomy-filter",
   "author": "wishmasterts",
   "license": "ISC",
   "devDependencies": {
@@ -19,6 +19,7 @@
     "concurrently": "^3.5.0",
     "cz-conventional-changelog": "^2.0.0",
     "mocha": "^3.5.0",
+    "rimraf": "^2.6.1",
     "size-limit": "^0.11.0",
     "typescript": "^2.5.2"
   },
